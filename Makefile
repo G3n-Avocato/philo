@@ -6,19 +6,21 @@
 #    By: lamasson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 14:27:42 by lamasson          #+#    #+#              #
-#    Updated: 2023/04/04 16:58:57 by lamasson         ###   ########.fr        #
+#    Updated: 2023/04/05 18:31:43 by lamasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC	= clang
 
-CFLAGS	=  -Wall -Wextra -Werror -g3
+CFLAGS	=  -Wall -Wextra -Werror -fsanitize=thread -g
 
 RM	= rm -rf
 
 NAME	= philo
 
-SRCS	= main.c 
+SRCS	= main.c \
+		  ft_init_rules.c \
+		  ft_init_mutex.c
 
 OBJS	= ${SRCS:%.c=%.o}
 

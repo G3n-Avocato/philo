@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/04 18:21:34 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/05 20:01:09 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,32 @@
 # include <sys/time.h> //gettimeofday
 # include <pthread.h> //thread
 
+typedef struct s_data{
+	pthread_t	t_id;
+	pthread_mutex_t l_f;
+	pthread_mutex_t	*r_f;
+	pthread_mutex_t	*m_print;
+}t_data;
+
 typedef struct s_rules{
 	int		nb_of_philo;
 	int		tto_die;
 	int		tto_eat;
 	int		tto_sleep;
 	int		nb_of_meal;
+	t_data	*data;
 }t_rules;
 
-typedef struct s_data{
-	pthread_t	t_id;
-}t_data;
-
-typedef struct s_mutex{
-	pthread_mutex_t co_mut;
-	unsigned int	count;
-}t_mutex;
-
 // init_rules
-t_rules	ft_init_rules(int argc, char **argv);
-int		ft_atoi(char *str);
-int		ft_check_int(t_rules rules);
+int		ft_init_rules(int argc, char **argv, t_rules *rules);
+int		ft_parse_atoi(char *str);
 t_data	*ft_init_struct_data(t_rules rules);
+
+//threah_crea
+int	ft_thread_create(t_rules rules);
+
+//init_mutex
+void	mutex_init_print(t_data *data, t_rules rules);
+void	mutex_init_fork(t_data *data, t_rules rules);
 
 #endif
