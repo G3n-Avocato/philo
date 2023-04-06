@@ -6,13 +6,13 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:43:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/05 19:43:24 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:10:22 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long int	get_milli_time()
+long int	get_time_m()
 {
 	long int	time;
 	struct timeval current_time;
@@ -22,6 +22,8 @@ long int	get_milli_time()
 	time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
 	return (time);
 }
+
+
 
 void	ft_print_statut(pthread_t philo, long int times)
 {

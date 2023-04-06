@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/05 20:01:09 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:53:07 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_data{
 	pthread_mutex_t l_f;
 	pthread_mutex_t	*r_f;
 	pthread_mutex_t	*m_print;
+	struct s_rules	*rules;
 }t_data;
 
 typedef struct s_rules{
@@ -39,7 +40,7 @@ typedef struct s_rules{
 // init_rules
 int		ft_init_rules(int argc, char **argv, t_rules *rules);
 int		ft_parse_atoi(char *str);
-t_data	*ft_init_struct_data(t_rules rules);
+t_data	*ft_init_struct_data(t_rules *rules);
 
 //threah_crea
 int	ft_thread_create(t_rules rules);

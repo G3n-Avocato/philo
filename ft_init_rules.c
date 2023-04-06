@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:25:37 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/05 19:09:28 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:54:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,19 @@ int	ft_parse_atoi(char *str)
 	return ((int)nb);
 }
 
-t_data	*ft_init_struct_data(t_rules rules)
+t_data	*ft_init_struct_data(t_rules *rules)
 {
 	t_data	*data;
+	int		i;
 
-	data = malloc(sizeof(t_data) * rules.nb_of_philo);
+	i = 0;
+	data = malloc(sizeof(t_data) * rules->nb_of_philo);
 	if (data == NULL)
 		return (NULL);
+	while (i < rules->nb_of_philo)
+	{
+			data[i].rules = rules;
+			i++;
+	}
 	return (data);
 }
