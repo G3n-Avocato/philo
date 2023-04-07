@@ -6,13 +6,14 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:43:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/06 17:10:22 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/07 18:12:10 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <pthread.h>
 
-long int	get_time_m()
+long int	get_time(void)
 {
 	long int	time;
 	struct timeval current_time;
@@ -23,12 +24,23 @@ long int	get_time_m()
 	return (time);
 }
 
-
-
-void	ft_print_statut(pthread_t philo, long int times)
+long int	get_chrono(long int start_s, long int end)
 {
-	printf("%ld [%ld] is taken a fork\n", times, philo);
-	printf("%ld [%ld] is eating\n", times, philo);
-	printf("%ld [%ld] is sleeping\n", times, philo);
-	printf("%ld [%ld] is thinking\n", times, philo);
+	long int	time;
+
+	time = end - start_s;
+	return (time);
+}
+
+void	ft_print_statut(t_data *data, long int time, char *str)
+{
+	int	error;
+
+	error = pthread_mutex_lock(data->m_print);
+	if (error != 0)
+		ft_error();
+	printf("%ld %d %s\n", time, data->num_philo, str);
+	error = pthread_mutex_unlock(data->m_print);
+	if (error != 0)
+		ft_error();
 }

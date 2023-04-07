@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:25:37 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/06 16:54:06 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:55:43 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	ft_init_rules(int argc, char **argv, t_rules *rules)
 	rules->tto_eat = tab[2];
 	rules->tto_sleep = tab[3];
 	if (argc < 6)
-		rules->nb_of_meal = -1; 
+		rules->nb_of_meal = -1;
+	rules->nb_philo_ate = 0;
 	return (0);
 }
 
@@ -68,7 +69,9 @@ t_data	*ft_init_struct_data(t_rules *rules)
 	while (i < rules->nb_of_philo)
 	{
 			data[i].rules = rules;
+			data[i].count_meal = 0;
 			i++;
+			data[i - 1].num_philo = i;
 	}
 	return (data);
 }
