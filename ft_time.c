@@ -6,12 +6,11 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:43:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/07 18:12:10 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/09 16:52:43 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
 
 long int	get_time(void)
 {
@@ -37,10 +36,10 @@ void	ft_print_statut(t_data *data, long int time, char *str)
 	int	error;
 
 	error = pthread_mutex_lock(data->m_print);
-	if (error != 0)
-		ft_error();
+//	if (error != 0)
+//		ft_error();
 	printf("%ld %d %s\n", time, data->num_philo, str);
 	error = pthread_mutex_unlock(data->m_print);
-	if (error != 0)
-		ft_error();
+//	if (error != 0)
+//		ft_error();
 }

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/07 18:20:13 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:45:40 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_data	*ft_init_struct_data(t_rules *rules);
 
 //threah_crea
 int	ft_thread_create(t_rules rules);
+int	ft_thread_join(t_data *data, t_rules rules);
 
 //init_mutex
 void	mutex_init_print(t_data *data, t_rules rules);
@@ -70,6 +71,13 @@ void	drop_forks(t_data *data);
 void	ft_count_philo_ate(t_data *data);
 void	ft_eat(t_data *data);
 void	ft_sleep(t_data *data);
+void	ft_think(t_data *data);
+
+//quit
+void	ft_error(t_data *data, t_rules rules);
+void	ft_destroy_mutex_fork(t_data *data, t_rules rules);
+void	ft_destroy_mutex_utils(t_data *data, t_rules rules);
+
 
 
 #endif
