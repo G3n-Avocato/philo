@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:25:37 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/07 17:55:43 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:04:17 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_init_rules(int argc, char **argv, t_rules *rules)
 	if (argc < 6)
 		rules->nb_of_meal = -1;
 	rules->nb_philo_ate = 0;
+	rules->death = 0;
 	return (0);
 }
 

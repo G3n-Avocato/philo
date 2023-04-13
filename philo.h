@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/13 15:32:33 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:10:04 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_data{
 	pthread_mutex_t l_f;
 	pthread_mutex_t	*r_f;
 	int				count_meal;
+	pthread_mutex_t start_e_mtx;
 	long int		start_e;	
 	struct s_rules	*rules;
 }t_data;
@@ -40,6 +41,8 @@ typedef struct s_rules{
 	int			nb_philo_ate;
 	pthread_mutex_t m_print;
 	pthread_mutex_t nb_philo_eat;
+	int				death;
+	pthread_mutex_t	death_mutex;
 	t_data	*data;
 }t_rules;
 
