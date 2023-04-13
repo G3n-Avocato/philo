@@ -6,38 +6,17 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:05:32 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/07 17:53:16 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:30:32 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	mutex_init_print(t_data *data, t_rules rules)
+void	mutex_init_utils(t_rules *rules)
 {
-	pthread_mutex_t	m_print;
-	int		i;
 
-	i = 0;
-	pthread_mutex_init(&m_print, NULL);
-	while (i < rules.nb_of_philo)
-	{
-		data[i].m_print = &m_print;
-		i++;
-	}
-}
-
-void	mutex_init_nb_meal(t_data *data, t_rules rules)
-{
-	pthread_mutex_t	nb_philo_eat;
-	int				i;
-
-	i = 0;
-	pthread_mutex_init(&nb_philo_eat, NULL);
-	while (i < rules.nb_of_philo)
-	{
-		data[i].nb_philo_eat = &nb_philo_eat;
-		i++;
-	}
+	pthread_mutex_init(&rules->m_print, NULL);
+	pthread_mutex_init(&rules->nb_philo_eat, NULL);
 }
 
 void	mutex_init_fork(t_data *data, t_rules rules)

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/08 12:45:40 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:32:33 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ typedef struct s_data{
 	int				num_philo;
 	pthread_mutex_t l_f;
 	pthread_mutex_t	*r_f;
-	pthread_mutex_t	*m_print;
 	int				count_meal;
-	long int		start_e;
-	pthread_mutex_t	*nb_philo_eat;
-	int				nb_p_eat;
+	long int		start_e;	
 	struct s_rules	*rules;
 }t_data;
 
@@ -41,9 +38,10 @@ typedef struct s_rules{
 	int			nb_of_meal;
 	long int	start_s;
 	int			nb_philo_ate;
+	pthread_mutex_t m_print;
+	pthread_mutex_t nb_philo_eat;
 	t_data	*data;
 }t_rules;
-// nb_philo_eat mutex
 
 // init_rules
 int		ft_init_rules(int argc, char **argv, t_rules *rules);
@@ -52,12 +50,11 @@ t_data	*ft_init_struct_data(t_rules *rules);
 
 //threah_crea
 int	ft_thread_create(t_rules rules);
-int	ft_thread_join(t_data *data, t_rules rules);
+int	ft_thread_join(t_data *data, t_rules *rules);
 
 //init_mutex
-void	mutex_init_print(t_data *data, t_rules rules);
+void	mutex_init_utils(t_rules *rules);
 void	mutex_init_fork(t_data *data, t_rules rules);
-void	mutex_init_nb_meal(t_data *data, t_rules rules);
 
 //time.c
 long int	get_time(void);
@@ -74,9 +71,9 @@ void	ft_sleep(t_data *data);
 void	ft_think(t_data *data);
 
 //quit
-void	ft_error(t_data *data, t_rules rules);
-void	ft_destroy_mutex_fork(t_data *data, t_rules rules);
-void	ft_destroy_mutex_utils(t_data *data, t_rules rules);
+void	ft_end_simu(t_data *data, t_rules *rules);
+void	ft_destroy_mutex_fork(t_data *data, t_rules *rules);
+void	ft_destroy_mutex_utils(t_rules *rules);
 
 
 

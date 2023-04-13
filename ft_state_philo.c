@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:20:02 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/09 16:50:14 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:38:25 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,32 @@
 void	*thread_routine(void *rul)
 {
 	t_data *data;
+	int		tmp;
 
 	data = rul;
-	while (data->rules->nb_philo_ate != data->rules->nb_of_meal)
+	if (data->num_philo % 2 == 0)
+		usleep(1000);
+	
+	if (pthread_mutex_lock(&data->rules->nb_philo_eat) != 0)
+		//ft_error();
+		return (NULL);
+	tmp = data->rules->nb_philo_ate;
+	if (pthread_mutex_unlock(&data->rules->nb_philo_eat) != 0)
+		//ft_error();
+		return (NULL);
+	while (tmp != data->rules->nb_of_philo)
 	{
 		take_forks(data);
 		ft_eat(data);
-		drop_forks(data);
 		ft_sleep(data);
 		ft_think(data);
+		if (pthread_mutex_lock(&data->rules->nb_philo_eat) != 0)
+			//ft_error();
+			return (NULL);
+		tmp = data->rules->nb_philo_ate;
+		if (pthread_mutex_unlock(&data->rules->nb_philo_eat) != 0)
+			//ft_error();
+			return (NULL);
 	}
 	return (NULL);
 }
@@ -31,20 +48,17 @@ void	*thread_routine(void *rul)
 void	take_forks(t_data *data)
 {
 	int			error;
-	long int	start_f;
 	long int	time;
 
-	start_f = get_time();
 	error = pthread_mutex_lock(&data->l_f);
 //	if (error != 0)
 //		ft_error();
-	time = get_chrono(data->rules->start_s, start_f);
+	time = get_chrono(data->rules->start_s, get_time());
 	ft_print_status(data, time, "has taken a fork");
-	start_f = get_time();
 	error = pthread_mutex_lock(data->r_f);
 //	if (error != 0)
 //		ft_error();
-	time = get_chrono(data->rules->start_s, start_f);
+	time = get_chrono(data->rules->start_s, get_time());
 	ft_print_status(data, time, "has taken a fork");
 }
 
@@ -64,11 +78,11 @@ void	ft_count_philo_ate(t_data *data)
 {
 	int	error;
 	
-	error = pthread_mutex_lock(data->nb_philo_eat);
+	error = pthread_mutex_lock(&data->rules->nb_philo_eat);
 //	if (error != 0)
 //		ft_error();
 	data->rules->nb_philo_ate += 1;
-	error = pthread_mutex_unlock(data->nb_philo_eat);
+	error = pthread_mutex_unlock(&data->rules->nb_philo_eat);
 //	if (error != 0)
 //		ft_error();
 }
@@ -81,9 +95,10 @@ void	ft_eat(t_data *data)
 	data->start_e = get_time();
 	time = get_chrono(data->rules->start_s, data->start_e);
 	ft_print_status(data, time, "is eating");
-	error = usleep(data->rules->tto_eat);
+	error = usleep(data->rules->tto_eat * 1000);
 //	if (error != 0)
 //		ft_error();
+	drop_forks(data);
 	if (data->rules->nb_of_meal != -1)
 	{
 		data->count_meal += 1;
@@ -94,14 +109,12 @@ void	ft_eat(t_data *data)
 
 void	ft_sleep(t_data *data)
 {
-	long int	start_sl;
 	long int	time;
 	int			error;
 
-	start_sl = get_time();
-	time = get_chrono(data->rules->start_s, start_sl);
+	time = get_chrono(data->rules->start_s, get_time());
 	ft_print_status(data, time, "is sleeping");
-	error = usleep(data->rules->tto_sleep);
+	error = usleep(data->rules->tto_sleep * 1000);
 
 }
 
@@ -114,17 +127,3 @@ void	ft_think(t_data *data)
 	time = get_chrono(data->rules->start_s, start_t);
 	ft_print_status(data, time, "is thinking");
 }
-/*
-
-prendre une fouchette
-prendre une autre fourchette 
-manger
-poser les 2 fourchettes 
-dors
-penser (print dormir)
-
-recoder ft_usleep
-variable partager entre thread doivent etre protoger par mutex
-
-2eme partie erif mort
-*/
