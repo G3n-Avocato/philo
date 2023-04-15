@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/13 17:10:04 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/15 17:43:38 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,16 @@ void	ft_count_philo_ate(t_data *data);
 void	ft_eat(t_data *data);
 void	ft_sleep(t_data *data);
 void	ft_think(t_data *data);
+int		check_eat_philo(t_data *data);
 
 //quit
 void	ft_end_simu(t_data *data, t_rules *rules);
 void	ft_destroy_mutex_fork(t_data *data, t_rules *rules);
 void	ft_destroy_mutex_utils(t_rules *rules);
+void	ft_error(t_data *data);
 
+//death
+int	check_death(t_data *data);
 
 
 #endif
