@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/15 17:43:38 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:11:32 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ typedef struct s_rules{
 	int			tto_sleep;
 	int			nb_of_meal;
 	long int	start_s;
-	int			nb_philo_ate;
 	pthread_mutex_t m_print;
 	pthread_mutex_t nb_philo_eat;
-	int				death;
+	int			nb_philo_ate;
 	pthread_mutex_t	death_mutex;
+	int				death;
+	int				error;
 	t_data	*data;
 }t_rules;
 
@@ -73,12 +74,13 @@ void	ft_eat(t_data *data);
 void	ft_sleep(t_data *data);
 void	ft_think(t_data *data);
 int		check_eat_philo(t_data *data);
+void	routine(t_data *data);
 
 //quit
 void	ft_end_simu(t_data *data, t_rules *rules);
 void	ft_destroy_mutex_fork(t_data *data, t_rules *rules);
 void	ft_destroy_mutex_utils(t_rules *rules);
-void	ft_error(t_data *data);
+void	ft_error(t_data *data, t_rules *rules);
 
 //death
 int	check_death(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:43:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/13 14:15:13 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/18 20:26:50 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ long int	get_chrono(long int start_s, long int end)
 
 void	ft_print_status(t_data *data, long int time, char *str)
 {
-	int	error;
-
-	error = pthread_mutex_lock(&data->rules->m_print);
+	if (pthread_mutex_lock(&data->rules->m_print) != 0)
+		data->rules->error = 1;
 	printf("%ld %d %s\n", time, data->num_philo, str);
-	error = pthread_mutex_unlock(&data->rules->m_print);
+	if (pthread_mutex_unlock(&data->rules->m_print) != 0)
+		data->rules->error = 1;
 }
