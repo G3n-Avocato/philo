@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/18 21:11:32 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:33:47 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_rules{
 	int			nb_philo_ate;
 	pthread_mutex_t	death_mutex;
 	int				death;
-	int				error;
 	t_data	*data;
 }t_rules;
 

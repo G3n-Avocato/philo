@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:43:24 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/18 20:33:03 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:33:30 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ int	main(int argc, char **argv)
 		return (1);
 	mutex_init_fork(data, rules);
 	mutex_init_utils(&rules);
-	rules.error = 0;
 	rules.data = data;
-	if (ft_thread_create(rules) == 1 || rules.error != 0)
+	if (ft_thread_create(rules) == 1)
 	{
 		ft_end_simu(data, &rules);
 		return (1);
