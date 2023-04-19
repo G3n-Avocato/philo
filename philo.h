@@ -83,6 +83,7 @@ void	ft_error(t_data *data, t_rules *rules);
 
 //death
 int	check_death(t_data *data);
-
+int	check_end(t_data *data);
+void	philo_death(t_data *data);
 
 #endif

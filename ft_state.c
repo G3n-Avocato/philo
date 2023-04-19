@@ -52,10 +52,8 @@ void	ft_sleep(t_data *data)
 
 void	ft_think(t_data *data)
 {
-	long int	start_t;
 	long int	time;
 
-	start_t = get_time();
-	time = get_chrono(data->rules->start_s, start_t);
+	time = get_chrono(data->rules->start_s, get_time());
 	ft_print_status(data, time, "is thinking");
 }

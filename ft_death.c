@@ -12,6 +12,32 @@
 
 #include "philo.h"
 
+int	check_end(t_data *data)
+{	
+	pthread_mutex_lock(&data->rules->death_mutex);
+	if (data->rules->death == 1)
+	{
+		pthread_mutex_unlock(&data->rules->death_mutex);
+		return (1);
+	}
+	else
+	{
+		pthread_mutex_unlock(&data->rules->death_mutex);
+		return (0);
+	}
+}
+
+void	philo_death(t_data *data)
+{
+	long int	time;
+
+	pthread_mutex_lock(&data->rules->death_mutex);
+	data->rules->death = 1;
+	pthread_mutex_unlock(&data->rules->death_mutex);
+	time = get_chrono(data->rules->start_s, get_time());
+	ft_print_status(data, time, "died");
+}
+
 int	check_death(t_data *data)
 {
 	int	i;

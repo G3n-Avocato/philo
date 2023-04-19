@@ -32,16 +32,16 @@ void	*thread_routine(void *rul)
 void	routine(t_data *data)
 {
 	take_forks(data);
-	if (data->rules->error == 1)
+	if (check_end(data) == 1)
 	{
-		pthread_mutex_unlock(&data->l_f);
+		drop_forks(data);
 		return ;
 	}
 	ft_eat(data);
-	if (data->rules->error == 1)
+	if (check_end(data) == 1)
 		return ;
 	ft_sleep(data);
-	if (data->rules->error == 1)
+	if (check_end(data) == 1)
 		return ;
 	ft_think(data);
 }

@@ -23,8 +23,9 @@ SRCS	= main.c \
 		  ft_init_mutex.c \
 		  ft_thread_crea.c \
 		  ft_state_philo.c \
-		  ft_time.c \
-		  ft_quit.c
+		  ft_state.c \
+		  ft_quit.c \
+		  ft_time.c
 
 OBJS	= ${SRCS:%.c=%.o}
 
