@@ -6,7 +6,7 @@
 #    By: lamasson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 14:27:42 by lamasson          #+#    #+#              #
-#    Updated: 2023/04/13 13:40:35 by lamasson         ###   ########.fr        #
+#    Updated: 2023/04/19 18:45:03 by lamasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS	= main.c \
 		  ft_state_philo.c \
 		  ft_state.c \
 		  ft_quit.c \
-		  ft_time.c
+		  ft_time.c \
+		  ft_death.c
 
 OBJS	= ${SRCS:%.c=%.o}
 

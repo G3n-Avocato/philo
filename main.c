@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:43:24 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/19 13:33:30 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:15:41 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 		ft_end_simu(data, &rules);
 		return (1);
 	}
+	check_end(data);
 	ft_end_simu(data, &rules);
 	return (0);
 }
