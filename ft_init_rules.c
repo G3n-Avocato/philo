@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:25:37 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/13 17:04:17 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:19:36 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_data	*ft_init_struct_data(t_rules *rules)
 	{
 			data[i].rules = rules;
 			data[i].count_meal = 0;
+			data[i].start_e = 0;
 			i++;
 			data[i - 1].num_philo = i;
 	}

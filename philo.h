@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/19 18:43:10 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:25:22 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_destroy_mutex_utils(t_rules *rules);
 void	ft_error(t_data *data, t_rules *rules);
 
 //death
-int		check_death(t_data *data);
+int		death(t_data *data);
 int		check_end(t_data *data);
 void	philo_death(t_data *data);
 

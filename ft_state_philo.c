@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:20:02 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/19 18:43:44 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:30:59 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*thread_routine(void *rul)
 	if (data->num_philo % 2 == 0)
 		usleep(1000);
 	tmp = check_eat_philo(data);	
-	while (tmp != data->rules->nb_of_philo)
+	while (tmp != data->rules->nb_of_philo && check_end(data) != 1)
 	{
 		routine(data);
 		tmp = check_eat_philo(data);

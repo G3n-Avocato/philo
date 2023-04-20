@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:43:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/19 13:42:32 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:02:14 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ long int	get_time(void)
 	return (time);
 }
 
-long int	get_chrono(long int start_s, long int end)
+long int	get_chrono(long int start, long int end)
 {
 	long int	time;
 
-	time = end - start_s;
+	time = end - start;
 	return (time);
 }
 
