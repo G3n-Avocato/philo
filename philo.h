@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/20 18:25:22 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/21 19:38:58 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	mutex_init_fork(t_data *data, t_rules rules);
 long int	get_time(void);
 long int	get_chrono(long int start_s, long int end);
 void		ft_print_status(t_data *data, long int time, char *str);
+void		only_one(t_data *data);
+void		ft_usleep(t_data *data, int time);
 
 //thread_routine
 void	*thread_routine(void *rul);

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:41:24 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/20 18:25:30 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:52:36 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ int	check_end(t_data *data)
 		pthread_mutex_unlock(&data->rules->death_mutex);
 		return (1);
 	}
-	else
-	{
-		pthread_mutex_unlock(&data->rules->death_mutex);
-		return (0);
-	}
+	pthread_mutex_unlock(&data->rules->death_mutex);
+	return (0);
 }
 
 void	philo_death(t_data *data)
@@ -38,38 +35,27 @@ void	philo_death(t_data *data)
 	ft_print_status(data, time, "died");
 }
 
-int	start_death_simu(t_data data)
-{
-	int	time_s;
-
-	if (data.count_meal == 0)
-	{
-		time_s = get_chrono(data.rules->start_s, get_time());
-		if (time_s >= data.rules->tto_die)
-			return (1);
-	}
-	return (0);
-}
-
 int	death(t_data *data)
 {
 	int	i;
-	int	time_e;
-	int	time_s;
-
+	int	eat;
+	
 	i = 0;
-	while (i < data->rules->nb_of_philo)
+	while (check_end(data) != 1 && check_eat_philo(data) != 1)
 	{
-		pthread_mutex_lock(&data[i].start_e_mtx);
-		time_e = get_chrono(data[i].start_e, get_time());
-		time_s = start_death_simu(data[i]);
-		pthread_mutex_unlock(&data[i].start_e_mtx);
-		if (time_e >= data[i].rules->tto_die || time_s == 1)
+		while (i < data->rules->nb_of_philo)
 		{
-			philo_death(&data[i]);
-			return (1);
+			pthread_mutex_lock(&data[i].start_e_mtx);
+			eat = get_chrono(data[i].start_e, get_time());
+			pthread_mutex_unlock(&data[i].start_e_mtx);
+			if (eat >= data[i].rules->tto_die)
+			{
+				philo_death(&data[i]);
+				return (1);
+			}
+			i++;
 		}
-		i++;
+		i = 0;
 	}
 	return (0);
 }

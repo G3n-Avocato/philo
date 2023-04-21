@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 12:20:02 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/20 18:30:59 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/21 19:30:14 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	*thread_routine(void *rul)
 {
 	t_data *data;
-	int		tmp;
 
 	data = rul;
-	if (data->num_philo % 2 == 0)
-		usleep(1000);
-	tmp = check_eat_philo(data);	
-	while (tmp != data->rules->nb_of_philo && check_end(data) != 1)
+	if (data->rules->nb_of_philo == 1)
 	{
-		routine(data);
-		tmp = check_eat_philo(data);
+		only_one(data);
+		return (NULL);
 	}
+	if (data->num_philo % 2 == 0)
+		ft_usleep(data, 1000);
+	while (check_eat_philo(data) != 1 && check_end(data) != 1)
+		routine(data);
 	return (NULL);
 }
 
@@ -48,12 +48,14 @@ void	routine(t_data *data)
 
 int		check_eat_philo(t_data *data)
 {
-	int	tmp;
-
 	pthread_mutex_lock(&data->rules->nb_philo_eat);
-	tmp = data->rules->nb_philo_ate;
+	if (data->rules->nb_philo_ate == data->rules->nb_of_philo)
+	{
+		pthread_mutex_unlock(&data->rules->nb_philo_eat);
+		return (1);
+	}
 	pthread_mutex_unlock(&data->rules->nb_philo_eat);
-	return(tmp);
+	return(0);
 }
 
 void	drop_forks(t_data *data)

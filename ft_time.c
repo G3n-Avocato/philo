@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:43:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/20 16:02:14 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/21 19:38:48 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,31 @@ long int	get_chrono(long int start, long int end)
 	return (time);
 }
 
+void	ft_usleep(t_data *data, int time)
+{
+	long int	start;
+
+	start = get_time();
+	while (get_time() - start <= time && check_end(data) != 1)
+		usleep(100);
+}
+
 void	ft_print_status(t_data *data, long int time, char *str)
 {
 	pthread_mutex_lock(&data->rules->m_print);
 	printf("%ld %d %s\n", time, data->num_philo, str);
 	pthread_mutex_unlock(&data->rules->m_print);
+}
+
+void	only_one(t_data *data)
+{
+	int	time;
+
+	pthread_mutex_lock(&data->l_f);
+	time = get_chrono(data->rules->start_s, get_time());
+	ft_print_status(data, time, "has taken a fork");
+	pthread_mutex_unlock(&data->l_f);
+	usleep(data->rules->tto_die * 1000);
+	time = get_chrono(data->rules->start_s, get_time());
+	ft_print_status(data, time, "died");
 }

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:43:24 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/20 16:35:17 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:55:16 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	main(int argc, char **argv)
 		ft_end_simu(data, &rules);
 		return (1);
 	}
-	death(data);
+	if (rules.nb_of_philo > 1)
+		death(data);
 	ft_end_simu(data, &rules);
 	return (0);
 }
