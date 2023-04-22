@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:43:56 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/21 19:38:48 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:41:42 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long int	get_time(void)
 {
-	long int	time;
-	struct timeval current_time;
+	long int		time;
+	struct timeval	current_time;
 
 	if (gettimeofday(&current_time, NULL) == -1)
 		return (-1);

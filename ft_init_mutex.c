@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:05:32 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/20 18:25:36 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:32:10 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	mutex_init_utils(t_rules *rules)
 {
-
 	pthread_mutex_init(&rules->m_print, NULL);
 	pthread_mutex_init(&rules->nb_philo_eat, NULL);
 	pthread_mutex_init(&rules->death_mutex, NULL);

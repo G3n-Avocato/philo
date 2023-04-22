@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:43:24 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/21 16:55:16 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:42:25 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_parse_arg(int argc, char **argv, t_rules *rules)
 	int	error;
 
 	error = 0;
-	if (argc < 5 || argc > 6) 
+	if (argc < 5 || argc > 6)
 	{
 		printf("Too few/many arguments!\n");
 		return (1);
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	rules.start_s = get_time();
 	if (ft_parse_arg(argc, argv, &rules) == 1)
 		return (1);
-	data = ft_init_struct_data(&rules); 
+	data = ft_init_struct_data(&rules);
 	if (data == NULL)
 		return (1);
 	mutex_init_fork(data, rules);

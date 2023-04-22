@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:41:24 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/21 16:52:36 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:29:18 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	death(t_data *data)
 {
 	int	i;
 	int	eat;
-	
+
 	i = 0;
 	while (check_end(data) != 1 && check_eat_philo(data) != 1)
 	{

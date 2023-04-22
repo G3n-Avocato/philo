@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:25:37 by lamasson          #+#    #+#             */
-/*   Updated: 2023/04/20 16:19:36 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/04/22 14:41:12 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_init_rules(int argc, char **argv, t_rules *rules)
 {
 	int	tab[4];
 	int	i;
-	
+
 	i = 0;
 	if (argc == 6)
 		rules->nb_of_meal = ft_parse_atoi(argv[5]);
